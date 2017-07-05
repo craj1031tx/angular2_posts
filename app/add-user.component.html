@@ -1,0 +1,55 @@
+<div class="row">
+<div class="well col-md-6">
+
+<form [ngFormModel]="newUserForm">
+    <fieldset>
+        <legend>User</legend>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ngControl="name" class="form-control" #localName="ngForm">
+            <div *ngIf="localName.touched && localName.errors">
+                <div class="alert alert-danger">A name is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" ngControl="email" class="form-control" #localEmail="ngForm">
+            <div *ngIf="localEmail.touched && localEmail.errors">
+                <div *ngIf="localEmail.errors.required" class="alert alert-danger">An email address is required.</div>
+                <div *ngIf="localEmail.errors.emailFormatError && !localEmail.errors.required" class="alert alert-danger">Please use the correct format</div>
+            </div>            
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" ngControl="phone" class="form-control" #localPhone="ngForm">
+            <div *ngIf="localPhone.touched && localPhone.errors">
+                <div class="alert alert-danger">A phone number is required.</div>
+            </div>
+        </div>
+    </fieldset>
+
+
+
+    <fieldset>
+        <legend>Address</legend>
+        <div ngControlGroup="address">
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input type="text" ngControl="street" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" ngControl="city" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" ngControl="state" class="form-control">
+            </div>
+        </div>
+    </fieldset>
+    <button class="btn btn-primary" type="submit" [disabled]="!newUserForm.valid">Add user.</button>
+</form>
+
+</div>
+</div>
+
