@@ -9,7 +9,6 @@ import { CustomValidators } from './custom-validator';
 export class AddUserComponent{
     newUserForm: ControlGroup;
 
-    emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
 
     constructor(formBuilder: FormBuilder){
         this.newUserForm = formBuilder.group({

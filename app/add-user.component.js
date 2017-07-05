@@ -26,7 +26,6 @@ System.register(['angular2/core', 'angular2/common', './custom-validator'], func
         execute: function() {
             AddUserComponent = (function () {
                 function AddUserComponent(formBuilder) {
-                    this.emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
                     this.newUserForm = formBuilder.group({
                         name: ['', common_1.Validators.required],
                         email: ['', common_1.Validators.compose([common_1.Validators.required, custom_validator_1.CustomValidators.emailFormat])],
