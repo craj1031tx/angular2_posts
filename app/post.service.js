@@ -11,7 +11,7 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var http_1, core_1;
-    var UserService;
+    var PostService;
     return {
         setters:[
             function (http_1_1) {
@@ -22,34 +22,28 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
             },
             function (_1) {}],
         execute: function() {
-            UserService = (function () {
-                function UserService(_http) {
+            PostService = (function () {
+                function PostService(_http) {
                     this._http = _http;
-                    this._url = "http://jsonplaceholder.typicode.com/users";
+                    this._url = "http://jsonplaceholder.typicode.com/posts";
                 }
-                UserService.prototype.getUsers = function () {
+                PostService.prototype.getPosts = function (id) {
+                    if (id) {
+                        return this._http.get(this._url + "?userId=" + id).map(function (res) { return res.json(); });
+                    }
                     return this._http.get(this._url).map(function (res) { return res.json(); });
                 };
-                UserService.prototype.getUser = function (id) {
-                    return this._http.get(this._url + "/" + id).map(function (res) { return res.json(); });
+                PostService.prototype.getComments = function (id) {
+                    return this._http.get(this._url + "/" + id + "/comments").map(function (res) { return res.json(); });
                 };
-                UserService.prototype.addUser = function (userData) {
-                    return this._http.post(this._url, JSON.stringify(userData)).map(function (res) { return res.json(); });
-                };
-                UserService.prototype.updateUser = function (userData, id) {
-                    return this._http.put(this._url + "/" + id, JSON.stringify(userData)).map(function (res) { return res.json(); });
-                };
-                UserService.prototype.deleteUser = function (id) {
-                    return this._http.delete(this._url + "/" + id).map(function (res) { return res.json(); });
-                };
-                UserService = __decorate([
+                PostService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], UserService);
-                return UserService;
+                ], PostService);
+                return PostService;
             }());
-            exports_1("UserService", UserService);
+            exports_1("PostService", PostService);
         }
     }
 });
-//# sourceMappingURL=user.service.js.map
+//# sourceMappingURL=post.service.js.map

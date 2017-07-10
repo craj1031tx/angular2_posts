@@ -6,28 +6,7 @@ import { UserService } from './user.service';
 
 @Component({
     selector: 'users',
-    template: `
-        <h1>Users</h1>
-        <a [routerLink]="['AddUser']" class="btn btn-primary">Add user</a>
-        <table class="table table-bordered">
-        <thead>
- 		    <tr>
-    			<th>Name</th>
-    			<th>Email</th>
-    			<th>Edit</th>
-    			<th>Delete</th>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		<tr *ngFor="#user of users">
-    			<td>{{ user.name }}</td>
-    			<td>{{ user.email }}</td>
-    			<td><i class="glyphicon glyphicon-edit"></i></td>
-                <td><i class="glyphicon glyphicon-remove"></i></td>
-    		</tr>
-    	</tbody>
-        </table>
-    `,
+    templateUrl: 'app/users.component.html',
     providers: [HTTP_PROVIDERS, UserService],
     directives: [ROUTER_DIRECTIVES]
 })
@@ -40,4 +19,15 @@ export class UsersComponent implements OnInit{
     ngOnInit(){
         this._usersService.getUsers().subscribe(res => this.users = res);
     }
-}
+
+    deleteUser(id){
+        if(confirm("Are you sure you want to delete the user with an ID of " + id)){
+            this._usersService.deleteUser(id).subscribe(res => {
+                this._usersService.getUsers().subscribe(res => {
+                    this.users = res
+                    console.log("this.users is now...", this.users);
+                });
+            })
+        };        
+    };
+};

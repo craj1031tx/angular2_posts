@@ -12,6 +12,7 @@ import { PostsComponent } from './posts.component';
     { path: '/', name: 'Home', component: HomeComponent },
     { path: '/users', name: 'Users', component: UsersComponent },
     { path: '/users/new', name: 'AddUser', component: AddUserComponent},
+    { path: '/users/:id', name: 'EditUser', component: AddUserComponent},
     { path: '/posts', name: 'Posts', component: PostsComponent },
     { path: '/*other', name: 'NotFound', redirectTo: ['Home'] }
 ])

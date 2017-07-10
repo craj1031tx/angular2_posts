@@ -44,6 +44,7 @@ System.register(['angular2/core', 'angular2/router', './navbar.component', './ho
                         { path: '/', name: 'Home', component: home_component_1.HomeComponent },
                         { path: '/users', name: 'Users', component: users_component_1.UsersComponent },
                         { path: '/users/new', name: 'AddUser', component: add_user_component_1.AddUserComponent },
+                        { path: '/users/:id', name: 'EditUser', component: add_user_component_1.AddUserComponent },
                         { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
                         { path: '/*other', name: 'NotFound', redirectTo: ['Home'] }
                     ]),

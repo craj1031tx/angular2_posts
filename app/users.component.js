@@ -35,10 +35,23 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './user.se
                     var _this = this;
                     this._usersService.getUsers().subscribe(function (res) { return _this.users = res; });
                 };
+                UsersComponent.prototype.deleteUser = function (id) {
+                    var _this = this;
+                    if (confirm("Are you sure you want to delete the user with an ID of " + id)) {
+                        this._usersService.deleteUser(id).subscribe(function (res) {
+                            _this._usersService.getUsers().subscribe(function (res) {
+                                _this.users = res;
+                                console.log("this.users is now...", _this.users);
+                            });
+                        });
+                    }
+                    ;
+                };
+                ;
                 UsersComponent = __decorate([
                     core_1.Component({
                         selector: 'users',
-                        template: "\n        <h1>Users</h1>\n        <a [routerLink]=\"['AddUser']\" class=\"btn btn-primary\">Add user</a>\n        <table class=\"table table-bordered\">\n        <thead>\n \t\t    <tr>\n    \t\t\t<th>Name</th>\n    \t\t\t<th>Email</th>\n    \t\t\t<th>Edit</th>\n    \t\t\t<th>Delete</th>\n    \t\t</tr>\n    \t</thead>\n    \t<tbody>\n    \t\t<tr *ngFor=\"#user of users\">\n    \t\t\t<td>{{ user.name }}</td>\n    \t\t\t<td>{{ user.email }}</td>\n    \t\t\t<td><i class=\"glyphicon glyphicon-edit\"></i></td>\n                <td><i class=\"glyphicon glyphicon-remove\"></i></td>\n    \t\t</tr>\n    \t</tbody>\n        </table>\n    ",
+                        templateUrl: 'app/users.component.html',
                         providers: [http_1.HTTP_PROVIDERS, user_service_1.UserService],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
@@ -47,6 +60,7 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', './user.se
                 return UsersComponent;
             }());
             exports_1("UsersComponent", UsersComponent);
+            ;
         }
     }
 });
